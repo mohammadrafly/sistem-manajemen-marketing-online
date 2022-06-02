@@ -13,7 +13,7 @@ class Categories extends BaseController
         $model = new Category();
         $data = [
             'content' => $model->getCategories()->getResult(),
-            'pages' => 'Manage Category',
+            'pages' => 'Data Kategori',
             'IniDashboard' => FALSE
         ];
         //dd($data);

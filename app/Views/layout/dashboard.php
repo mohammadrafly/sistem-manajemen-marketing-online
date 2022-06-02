@@ -52,17 +52,15 @@
                         <a href="<?= base_url('dashboard') ?>">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
-                                <img src="<?= base_url('assets/images/logo-icon.png') ?>" alt="homepage" class="dark-logo" />
+                                <img src="<?= base_url('assets/images/favicon.png') ?>" alt="homepage" class="dark-logo" width="50px"/>
                                 <!-- Light Logo icon -->
-                                <img src="<?= base_url('assets/images/logo-icon.png') ?>" alt="homepage" class="light-logo" />
+                                <img src="<?= base_url('assets/images/favicon.png') ?>" alt="homepage" class="light-logo" width="50px"/>
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
                             <span class="logo-text">
                                 <!-- dark Logo text -->
-                                <img src="<?= base_url('assets/images/logo-text.png') ?>" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo text -->
-                                <img src="<?= base_url('assets/images/logo-light-text.png') ?>" class="light-logo" alt="homepage" />
+                                SMMO
                             </span>
                         </a>
                     </div>
@@ -100,9 +98,12 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="<?= base_url('assets/images/users/profile-pic.jpg') ?>" alt="user" class="rounded-circle"
-                                    width="40">
-                                <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
+                                                    <?php if(session()->get('profile') === NULL): ?>
+                                                        <img src="<?= base_url('assets/images/default.png') ?>" alt="user" class="rounded-circle" width="40">
+                                                    <?php elseif(session()->get('profile')): ?>
+                                                        <img src="<?= base_url('profile/'.session()->get('profile')) ?>" alt="user" class="rounded-circle" width="40">
+                                                    <?php endif ?>
+                                <span class="ml-2 d-none d-lg-inline-block"><span>Halo, </span> <span
                                         class="text-dark"><?= session()->get('name') ?></span> <i data-feather="chevron-down"
                                         class="svg-icon"></i></span>
                             </a>
@@ -133,30 +134,61 @@
                     <ul id="sidebarnav">
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard') ?>"
                                 aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
-                                    class="hide-menu">Dashboard</span></a></li>
+                                    class="hide-menu">Dashboard</span></a></li>                      
+                        <?php if(session()->get('role') === 'Superuser'): ?>
+                            <li class="list-divider"></li>
+                            <li class="nav-small-cap"><span class="hide-menu">Master Data</span></li>
+                            <li class="sidebar-item"> <a class="sidebar-link" href="<?= base_url('dashboard/posts') ?>"
+                                    aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                        class="hide-menu">Data Iklan</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard/category') ?>"
+                                    aria-expanded="false"><i data-feather="list" class="feather-icon"></i><span
+                                        class="hide-menu">Data Kategori</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard/teams') ?>"
+                                    aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
+                                        class="hide-menu">Atur Team</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard/users') ?>"
+                                    aria-expanded="false"><i data-feather="user-check" class="feather-icon"></i><span
+                                        class="hide-menu">Atur User</span></a></li>
+
+                        <?php elseif(session()->get('role') === 'Leader'): ?>
+                            <li class="list-divider"></li>
+                            <li class="nav-small-cap"><span class="hide-menu">Master Data</span></li>
+                            <li class="sidebar-item"> <a class="sidebar-link" href="<?= base_url('dashboard/posts') ?>"
+                                    aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                        class="hide-menu">Data Iklan</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard/category') ?>"
+                                    aria-expanded="false"><i data-feather="list" class="feather-icon"></i><span
+                                        class="hide-menu">Data Kategori</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard/profile/teams/'.session()->get('teams')) ?>"
+                                    aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
+                                        class="hide-menu">Atur Team</span></a></li>
+
+                        <?php elseif(session()->get('role') === 'Employee'): ?>
+                            <li class="list-divider"></li>
+                            <li class="nav-small-cap"><span class="hide-menu">Master Data</span></li>
+                            <li class="sidebar-item"> <a class="sidebar-link" href="<?= base_url('dashboard/posts/my/'.session()->get('id')) ?>"
+                                    aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                        class="hide-menu">Data Iklan</span></a></li>
+                            <?php if (session()->get('teams') === NULL): ?>
+                            <li class="sidebar-item"> <a class="sidebar-link" href="<?= base_url('dashboard/profile/teams/error') ?>"
+                                    aria-expanded="false"><i data-feather="list" class="feather-icon"></i><span
+                                        class="hide-menu">Team Saya</span></a></li>
+                            <?php elseif (session()->get('teams')): ?>
+                            <li class="sidebar-item"> <a class="sidebar-link" href="<?= base_url('dashboard/profile/teams/'.session()->get('teams')) ?>"
+                                    aria-expanded="false"><i data-feather="list" class="feather-icon"></i><span
+                                        class="hide-menu">Team Saya</span></a></li>        
+                            <?php endif ?>
+                        <?php elseif(session()->get('role') === 'Unset'): ?>
+    
+                        <?php endif ?>
 
                         <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Work</span></li>
-
-                        <li class="sidebar-item"> <a class="sidebar-link" href="<?= base_url('dashboard/posts') ?>"
-                                aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
-                                    class="hide-menu">Manage Post</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard/category') ?>"
-                                aria-expanded="false"><i data-feather="list" class="feather-icon"></i><span
-                                    class="hide-menu">Manage Category</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard/teams') ?>"
-                                aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
-                                    class="hide-menu">Manage Team</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('dashboard/users') ?>"
-                                aria-expanded="false"><i data-feather="user-check" class="feather-icon"></i><span
-                                    class="hide-menu">Manage User</span></a></li>
-
-                        <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Other`s</span></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Lainnya</span></li>
                         
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('logout') ?>"
                                 aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
-                                    class="hide-menu">Logout</span></a></li>
+                                    class="hide-menu">Keluar</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -176,7 +208,6 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Hi There! <?= session()->get('name') ?>!</h3>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
@@ -204,6 +235,7 @@
             </footer>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="<?= base_url('assets/libs/jquery/dist/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/libs/popper.js/dist/umd/popper.min.js') ?>"></script>
     <script src="<?= base_url('assets/libs/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
@@ -215,6 +247,36 @@
     <script src="<?= base_url('dist/js/sidebarmenu.js') ?>"></script>
     <!--Custom JavaScript -->
     <script src="<?= base_url('dist/js/custom.min.js') ?>"></script>
+    <script>
+        $('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
+  var src = $(this).attr('src');
+  var modal;
+
+  function removeModal() {
+    modal.remove();
+    $('body').off('keyup.modal-close');
+  }
+  modal = $('<div>').css({
+    background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+    backgroundSize: 'contain',
+    width: '100%',
+    height: '100%',
+    position: 'fixed',
+    zIndex: '10000',
+    top: '0',
+    left: '0',
+    cursor: 'zoom-out'
+  }).click(function() {
+    removeModal();
+  }).appendTo('body');
+  //handling ESC
+  $('body').on('keyup.modal-close', function(e) {
+    if (e.key === 'Escape') {
+      removeModal();
+    }
+  });
+});
+    </script>
     <!--This page JavaScript -->
     <script src="<?= base_url('assets/extra-libs/c3/d3.min.js') ?>"></script>
     <script src="<?= base_url('assets/extra-libs/c3/c3.min.js') ?>"></script>

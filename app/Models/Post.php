@@ -21,7 +21,8 @@ class Post extends Model
         'meta',
         'tag',
         'categories',
-        'picture'
+        'picture',
+        'expired'
     ];
 
     // Dates
@@ -50,24 +51,44 @@ class Post extends Model
 
     public function getPost()
     {
-        $builder = $this->db->table('posts AS p')
-                ->select('p.*, cat.title AS cat_name')
-                ->select('p.*, user.name AS user_name')
-                ->join('category AS cat', 'p.author = cat.author', 'left')
-                ->join('users AS user', 'p.author = user.id', 'left')
+        $builder = $this->db->table('posts')
+                ->select('posts.*, category.title AS cat_name')
+                ->select('posts.*, users.name AS user_name')
+                ->join('category', 'posts.categories = category.id', 'left')
+                ->join('users', 'posts.author = users.id', 'left')
                 ->get();
         return $builder;
     }
 
     public function getPostByID($id = null)
     {
-        $builder = $this->db->table('posts AS p')
-                ->select('p.*, cat.title AS cat_name')
-                ->select('p.*, user.name AS user_name')
-                ->join('category AS cat', 'p.author = cat.author', 'left')
-                ->join('users AS user', 'p.author = user.id', 'left')
-                ->where('p.id_post', $id)
+        $builder = $this->db->table('posts')
+                ->select('posts.*, category.title AS cat_name')
+                ->select('posts.*, users.name AS user_name')
+                ->join('category', 'posts.categories = category.id', 'left')
+                ->join('users', 'posts.author = users.id', 'left')
+                ->where('posts.id_post', $id)
                 ->get();
         return $builder;
+    }
+
+    public function getPostByAuthor($id = null)
+    {
+        $builder = $this->db->table('posts')
+                ->select('posts.*, category.title AS cat_name')
+                ->select('posts.*, users.name AS user_name')
+                ->join('category', 'posts.categories = category.id', 'left')
+                ->join('users', 'posts.author = users.id', 'left')
+                ->where('posts.author', $id)
+                ->get();
+        return $builder;
+    }
+
+    function CountByID()
+    {
+        $query = $this->db->table('posts')
+                ->where(['author'=>session()->get('id')])
+                ->countAllResults();
+        return $query;
     }
 }

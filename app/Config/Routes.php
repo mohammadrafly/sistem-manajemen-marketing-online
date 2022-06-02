@@ -43,8 +43,10 @@ $routes->group('dashboard', ['filter' => 'authGuard'], function ($routes) {
     $routes->group('profile', function ($routes) {
         $routes->get('u/(:any)', 'Profile::index/$1');
         $routes->post('/', 'Profile::update');
+        $routes->get('teams/(:num)', 'Teams::indexPersonal/$1');
+        $routes->get('teams/error', 'Teams::error');
     });
-    $routes->group('category', ['filter' => 'superuserGuard'], function ($routes) {
+    $routes->group('category', function ($routes) {
         $routes->get('/', 'Categories::index');
         $routes->get('add', 'Categories::add');
         $routes->post('add', 'Categories::store');
@@ -53,12 +55,15 @@ $routes->group('dashboard', ['filter' => 'authGuard'], function ($routes) {
         $routes->get('delete/(:num)', 'Categories::delete/$1');
     });
     $routes->group('teams', ['filter' => 'superuserGuard'], function ($routes) {
-        $routes->get('/', 'Team::index');
-        $routes->get('add', 'Team::add');
-        $routes->post('add', 'Team::store');
-        $routes->get('edit/(:num)', 'Team::edit/$1');
-        $routes->post('update', 'Team::update');
-        $routes->get('delete/(:num)', 'Team::delete/$1');
+        $routes->get('/', 'Teams::index');
+        $routes->get('add', 'Teams::add');
+        $routes->post('add', 'Teams::store');
+        $routes->get('edit/(:num)', 'Teams::edit/$1');
+        $routes->post('update', 'Teams::update');
+        $routes->get('delete/(:num)', 'Teams::delete/$1');
+        $routes->get('add/anggota/(:num)', 'Teams::addAnggota/$1');
+        $routes->post('add/anggota', 'Teams::addAnggotaProced');
+        $routes->get('list/anggota/(:num)', 'Teams::listTeam/$1');
     });
     $routes->group('users', ['filter' => 'superuserGuard'], function ($routes) {
         $routes->get('/', 'Users::index');
@@ -68,13 +73,15 @@ $routes->group('dashboard', ['filter' => 'authGuard'], function ($routes) {
         $routes->post('update', 'Users::update');
         $routes->get('delete/(:num)', 'Users::delete/$1');
     });
-    $routes->group('posts', ['filter' => 'superuserGuard'], function ($routes) {
+    $routes->group('posts', function ($routes) {
+        $routes->get('my/(:num)', 'Posts::indexPersonal/$1');
         $routes->get('/', 'Posts::index');
         $routes->get('add', 'Posts::add');
         $routes->post('add', 'Posts::store');
         $routes->get('edit/(:num)', 'Posts::edit/$1');
         $routes->post('update', 'Posts::update');
         $routes->get('delete/(:num)', 'Posts::delete/$1');
+        $routes->get('preview/(:num)', 'Posts::preview/$1');
     });
 });
 

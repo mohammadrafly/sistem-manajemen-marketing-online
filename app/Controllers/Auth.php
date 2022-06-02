@@ -29,8 +29,11 @@ class Auth extends BaseController
                     'phone'     => $dataUser['phone'],
                     'name'      => $dataUser['name'],
                     'role'      => $dataUser['role'],
-                    'created'=> $dataUser['created'],
+                    'created'   => $dataUser['created'],
                     'id'        => $dataUser['id'],
+                    'profile'   => $dataUser['profile'],
+                    'gender'    => $dataUser['gender'],
+                    'teams'     => $dataUser['teams'],
                     'WesLogin'  => TRUE,
                 ]);
                 return redirect()->to(base_url('dashboard'));

@@ -32,11 +32,11 @@ class Users extends BaseController
     {
         if (!$this->validate([
             'name' => [
-                'rules' => 'required|min_length[4]|max_length[20]',
+                'rules' => 'required|min_length[4]|max_length[255]',
                 'errors' => [
                     'required' => '{field} Harus diisi',
                     'min_length' => '{field} Minimal 4 Karakter',
-                    'max_length' => '{field} Maksimal 20 Karakter',
+                    'max_length' => '{field} Maksimal 255 Karakter',
                 ]
             ],
             'username' => [

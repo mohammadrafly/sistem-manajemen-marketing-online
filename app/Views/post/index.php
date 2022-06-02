@@ -19,7 +19,7 @@
                                 <h4 class="card-title float-left"><?= $pages ?></h4>
                                 <div class="card-title float-right">
                                     <a href="<?= base_url('dashboard/posts/add') ?>" class="btn btn-outline-secondary btn-rounded"><i
-                                                    class="far fa-user-plus"></i> Add Post</a>
+                                                    class="far fa-user-plus"></i> Tambah Iklan</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table id="zero_config"
@@ -27,13 +27,16 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Title</th>
-                                                <th>Content</th>
+                                                <th>Judul</th>
+                                                <th>Konten</th>
                                                 <th>Meta</th>
                                                 <th>Tag</th>
-                                                <th>Categories</th>
+                                                <th>Kategori</th>
                                                 <th>Author</th>
-                                                <th>Created At</th>
+                                                <th>Gambar</th>
+                                                <th>Expired</th>
+                                                <th>Dibuat pada</th>
+                                                <th>Status</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -45,13 +48,28 @@
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->title ?></td>
-                                                <td><?= $row->content ?></td>
+                                                <td><?= character_limiter($row->content, 20)?></td>
                                                 <td><?= $row->meta ?></td>
                                                 <td><?= $row->tag ?></td>
                                                 <td><?= $row->cat_name ?></td>
                                                 <td><?= $row->user_name ?></td>
+                                                <td><img data-enlargeable width="100" style="cursor: zoom-in" src="<?= base_url('picture/'.$row->picture) ?>" width="100px"/></td>
+                                                <td><?= $row->expired ?></td>
                                                 <td><?= $row->created_at ?></td>
                                                 <td>
+                                                    <!-- lebih dari hari dan jam yang ditentukan -->
+                                                    <?php if($row->expired <= $date): ?>
+                                                        <button type="text"
+                                                        class="btn waves-effect waves-light btn-rounded btn-danger">EXPIRED</button>
+                                                    <!-- kurang dari hari dan jam yang ditenrukan -->
+                                                    <?php elseif($row->expired >= $date): ?>
+                                                        <button type="text"
+                                                        class="btn waves-effect waves-light btn-rounded btn-success">ONLINE</button>
+                                                    <?php endif ?>
+                                                </td>
+                                                <td>
+                                                <a href="<?= base_url('dashboard/posts/preview/'.$row->id_post) ?>" class="btn btn-outline-primary btn-rounded"><i
+                                                    class="fas fa-eye"></i> Preview</a>
                                                 <a href="<?= base_url('dashboard/posts/edit/'.$row->id_post) ?>" class="btn btn-outline-primary btn-rounded"><i
                                                     class="far fa-edit"></i> Edit</a>
                                                 <a href="<?= base_url('dashboard/posts/delete/'.$row->id_post) ?>" class="btn btn-outline-danger btn-rounded"><i

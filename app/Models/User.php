@@ -20,7 +20,10 @@ class User extends Model
         'email',
         'phone',
         'name',
-        'role'
+        'role',
+        'profile',
+        'gender',
+        'teams'
     ];
 
     // Dates

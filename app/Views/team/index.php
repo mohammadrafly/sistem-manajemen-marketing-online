@@ -18,8 +18,8 @@
                             <div class="card-body">
                                 <h4 class="card-title float-left"><?= $pages ?></h4>
                                 <div class="card-title float-right">
-                                    <a href="<?= base_url('dashboard/category/add') ?>" class="btn btn-outline-secondary btn-rounded"><i
-                                                    class="far fa-user-plus"></i> Tambah Kategori</a>
+                                    <a href="<?= base_url('dashboard/teams/add') ?>" class="btn btn-outline-secondary btn-rounded"><i
+                                                    class="far fa-user-plus"></i> Add Team</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table id="zero_config"
@@ -27,10 +27,9 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Kategory</th>
-                                                <th>Konten</th>
-                                                <th>Author</th>
-                                                <th>Dibuat pada</th>
+                                                <th>Title</th>
+                                                <th>Leader Name</th>
+                                                <th>Created At</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -42,14 +41,17 @@
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->title ?></td>
-                                                <td><?= $row->content ?></td>
-                                                <td><?= $row->name ?></td>
+                                                <td><?= $row->user_name ?></td>
                                                 <td><?= $row->created_at ?></td>
                                                 <td>
-                                                <a href="<?= base_url('dashboard/category/edit/'.$row->id) ?>" class="btn btn-outline-primary btn-rounded"><i
+                                                <a href="<?= base_url('dashboard/teams/edit/'.$row->id) ?>" class="btn btn-outline-primary btn-rounded"><i
                                                     class="far fa-edit"></i> Edit</a>
-                                                <a href="<?= base_url('dashboard/category/delete/'.$row->id) ?>" class="btn btn-outline-danger btn-rounded"><i
+                                                <a href="<?= base_url('dashboard/teams/delete/'.$row->id) ?>" class="btn btn-outline-danger btn-rounded"><i
                                                     class="far fa-trash-alt"></i> Delete</a>
+                                                <a href="<?= base_url('dashboard/teams/add/anggota/'.$row->id) ?>" class="btn btn-outline-secondary btn-rounded"><i
+                                                    class="far fa-plus-circle"></i> Tambah Anggota</a>
+                                                <a href="<?= base_url('dashboard/teams/list/anggota/'.$row->id) ?>" class="btn btn-outline-secondary btn-rounded"><i
+                                                    class="far fa-plus-circle"></i> List Anggota</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

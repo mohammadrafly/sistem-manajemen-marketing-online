@@ -17,7 +17,7 @@
                                 <?php endif; ?>
                             <div class="card-body">
                                 <h4 class="card-title"><?= $pages ?></h4>
-                                <form method="POST" action="<?= base_url('dashboard/posts/add') ?>">
+                                <form method="POST" action="<?= base_url('dashboard/posts/add') ?>" enctype="multipart/form-data">
                                 <?= csrf_field() ?>     
                                     <input type="text" name="author" class="form-control" value="<?= $id ?>" hidden>
                                     <div class="form-body">
@@ -30,8 +30,8 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Deskripsi</label>
-                                                    <textarea type="text" name="content" class="form-control" placeholder="Content" ></textarea>
+                                                    <label>Konten</label>
+                                                    <textarea type="text" name="content" class="form-control" placeholder="Konten" ></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -52,9 +52,9 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Category</label>
+                                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Kategori</label>
                                                     <select name="categories" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                                        <option selected>Pilih Category...</option>
+                                                        <option selected>Pilih Kategori..</option>
                                                         <?php 
                                                         foreach($category as $row): ?>
                                                         <option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -64,15 +64,24 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Picture</label>
-                                                    <input type="text" name="picture" class="form-control" placeholder="Picture" >
+                                                <label>Gambar</label>
+                                                    <div class="custom-file">
+                                                        <input type="file" name="picture" class="custom-file-input" id="inputGroupFile01">
+                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label>Expired</label>
+                                                    <input type="datetime-local" name="expired" class="form-control" value="2008-05-13T22:33:00">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-actions">
                                         <div class="text-right">
-                                            <button type="submit" class="btn btn-info">Add Post</button>
+                                            <button type="submit" class="btn btn-info">Tambah Iklan</button>
                                         </div>
                                     </div>
                                 </form>

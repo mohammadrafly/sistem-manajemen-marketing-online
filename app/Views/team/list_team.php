@@ -16,21 +16,15 @@
                                     </div>
                                 <?php endif; ?>
                             <div class="card-body">
-                                <h4 class="card-title float-left"><?= $pages ?></h4>
-                                <div class="card-title float-right">
-                                    <a href="<?= base_url('dashboard/category/add') ?>" class="btn btn-outline-secondary btn-rounded"><i
-                                                    class="far fa-user-plus"></i> Tambah Kategori</a>
-                                </div>
+                                <h4 class="card-title float-left"><?= $pages ?> <?= $team['title'] ?></h4>
                                 <div class="table-responsive">
                                     <table id="zero_config"
                                         class="table table-striped table-bordered display no-wrap" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Kategory</th>
-                                                <th>Konten</th>
-                                                <th>Author</th>
-                                                <th>Dibuat pada</th>
+                                                <th>Anggota</th>
+                                                <th>Join</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -41,15 +35,11 @@
                                         foreach($content as $row): ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $row->title ?></td>
-                                                <td><?= $row->content ?></td>
-                                                <td><?= $row->name ?></td>
-                                                <td><?= $row->created_at ?></td>
+                                                <td><?= $row->nama_anggota ?></td>
+                                                <td><?= $row->join ?></td>
                                                 <td>
-                                                <a href="<?= base_url('dashboard/category/edit/'.$row->id) ?>" class="btn btn-outline-primary btn-rounded"><i
-                                                    class="far fa-edit"></i> Edit</a>
-                                                <a href="<?= base_url('dashboard/category/delete/'.$row->id) ?>" class="btn btn-outline-danger btn-rounded"><i
-                                                    class="far fa-trash-alt"></i> Delete</a>
+                                                <a href="<?= base_url('dashboard/teams/delete/'.$row->id) ?>" class="btn btn-outline-danger btn-rounded"><i
+                                                    class="far fa-trash-alt"></i> Delete</a>                         
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
