@@ -49,6 +49,16 @@
                                                     <input type="text" name="tag" class="form-control" placeholder="Tag" value="<?= $row->tag ?>">
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Harga</label>
+                                                    <input type="number" name="harga" class="form-control" placeholder="Harga" value="<?= $row->harga ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <label class="mr-sm-2" for="inlineFormCustomSelect">Picture</label>
                                                 <div class="input-group mb-3">

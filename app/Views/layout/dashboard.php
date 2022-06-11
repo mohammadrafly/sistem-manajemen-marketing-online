@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/images/favicon.png') ?>">
     <title>Sistem Menejemen Marketing Online</title>
     <!-- Custom CSS -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
     <link href="<?= base_url('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/extra-libs/c3/c3.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/libs/chartist/dist/chartist.min.css') ?>" rel="stylesheet">
@@ -249,34 +250,44 @@
     <script src="<?= base_url('dist/js/custom.min.js') ?>"></script>
     <script>
         $('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
-  var src = $(this).attr('src');
-  var modal;
+        var src = $(this).attr('src');
+        var modal;
 
-  function removeModal() {
-    modal.remove();
-    $('body').off('keyup.modal-close');
-  }
-  modal = $('<div>').css({
-    background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
-    backgroundSize: 'contain',
-    width: '100%',
-    height: '100%',
-    position: 'fixed',
-    zIndex: '10000',
-    top: '0',
-    left: '0',
-    cursor: 'zoom-out'
-  }).click(function() {
-    removeModal();
-  }).appendTo('body');
-  //handling ESC
-  $('body').on('keyup.modal-close', function(e) {
-    if (e.key === 'Escape') {
-      removeModal();
-    }
-  });
-});
+        function removeModal() {
+            modal.remove();
+            $('body').off('keyup.modal-close');
+        }
+        modal = $('<div>').css({
+            background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+            backgroundSize: 'contain',
+            width: '100%',
+            height: '100%',
+            position: 'fixed',
+            zIndex: '10000',
+            top: '0',
+            left: '0',
+            cursor: 'zoom-out'
+        }).click(function() {
+            removeModal();
+        }).appendTo('body');
+        //handling ESC
+        $('body').on('keyup.modal-close', function(e) {
+            if (e.key === 'Escape') {
+            removeModal();
+            }
+        });
+        });
     </script>
+                    <script>
+                        ClassicEditor
+                                .create( document.querySelector( '#editor' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                </script>
     <!--This page JavaScript -->
     <script src="<?= base_url('assets/extra-libs/c3/d3.min.js') ?>"></script>
     <script src="<?= base_url('assets/extra-libs/c3/c3.min.js') ?>"></script>

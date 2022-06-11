@@ -35,6 +35,7 @@
                                                 <th>Author</th>
                                                 <th>Gambar</th>
                                                 <th>Expired</th>
+                                                <th>Harga</th>
                                                 <th>Dibuat pada</th>
                                                 <th>Status</th>
                                                 <th>Opsi</th>
@@ -55,6 +56,7 @@
                                                 <td><?= $row->user_name ?></td>
                                                 <td><img data-enlargeable width="100" style="cursor: zoom-in" src="<?= base_url('picture/'.$row->picture) ?>" width="100px"/></td>
                                                 <td><?= $row->expired ?></td>
+                                                <td><?= number_to_currency($row->harga, 'IDR') ?></td>
                                                 <td><?= $row->created_at ?></td>
                                                 <td>
                                                     <!-- lebih dari hari dan jam yang ditentukan -->

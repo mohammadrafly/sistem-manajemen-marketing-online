@@ -22,7 +22,8 @@ class Post extends Model
         'tag',
         'categories',
         'picture',
-        'expired'
+        'expired',
+        'harga'
     ];
 
     // Dates

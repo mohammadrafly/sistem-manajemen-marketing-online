@@ -31,7 +31,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Konten</label>
-                                                    <textarea type="text" name="content" class="form-control" placeholder="Konten" ></textarea>
+                                                    <input type="text" name="content" class="form-control" placeholder="Judul" >
                                                 </div>
                                             </div>
                                         </div>
@@ -74,7 +74,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                 <label>Expired</label>
-                                                    <input type="datetime-local" name="expired" class="form-control" value="2008-05-13T22:33:00">
+                                                    <input type="datetime-local" name="expired" class="form-control" value="<?php date('Y-m-d') ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label>Harga</label>
+                                                    <input type="number" name="harga" class="form-control" placeholder="Masukkan Harga">
                                                 </div>
                                             </div>
                                         </div>

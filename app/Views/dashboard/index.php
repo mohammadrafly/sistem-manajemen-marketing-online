@@ -12,24 +12,36 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Total Post Saya</h4>
-                                        <p class="card-text btn btn-lg btn-primary"><?= $employee ?></p>
+                                        <p class="card-text btn btn-lg btn-primary"><?= $post ?></p>
                                     </div>
                                 </div>
                                 <!-- Card -->
                             </div>
-<?php elseif(session()->get('role') === 'Leader'): ?>
-<?php elseif(session()->get('role') === 'Superuser'): ?>
+<?php elseif(session()->get('role') === 'Superuser' || session()->get('role') === 'Leader'): ?>
                 <div class="card-group">
                     <div class="card border-right">
                         <div class="card-body">
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium">236</h2>
-                                        <span
-                                            class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%</span>
+                                        <h2 class="text-dark mb-1 font-weight-medium"><?= $postAll ?></h2>
                                     </div>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Post Saya</h6>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Iklan</h6>
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if(session()->get('role') === 'Superuser'): ?>
+                    <div class="card border-right">
+                        <div class="card-body">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                <div>
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><?= $userAll ?></h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total User
+                                    </h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
@@ -37,34 +49,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card border-right">
-                        <div class="card-body">
-                            <div class="d-flex d-lg-flex d-md-block align-items-center">
-                                <div>
-                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
-                                            class="set-doller">$</sup>18,306</h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Earnings of Month
-                                    </h6>
-                                </div>
-                                <div class="ml-auto mt-md-3 mt-lg-0">
-                                    <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php elseif(session()->get('role') === 'Leader'): ?>
+                    <?php endif ?>
                     <div class="card border-right">
                         <div class="card-body">
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium">1538</h2>
-                                        <span
-                                            class="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">-18.33%</span>
+                                        <h2 class="text-dark mb-1 font-weight-medium"><?= $teamAll ?></h2>
                                     </div>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">New Projects</h6>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Team</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
-                                    <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                                    <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -73,8 +70,8 @@
                         <div class="card-body">
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
-                                    <h2 class="text-dark mb-1 font-weight-medium">864</h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Projects</h6>
+                                    <h2 class="text-dark mb-1 font-weight-medium"><?= $categoryAll ?></h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Category</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>

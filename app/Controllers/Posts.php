@@ -12,6 +12,7 @@ class Posts extends BaseController
     public function index()
     {
         helper('text');
+        helper('number');
         $model = new Post();
         $data = [
             'content' => $model->getPost()->getResult(),
@@ -106,6 +107,12 @@ class Posts extends BaseController
                     'required' => '{field} Harus diisi',
                 ]
             ],
+            'harga' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus diisi',
+                ]
+            ],
             'picture' => [
                 'rules' => 'mime_in[picture,image/jpg,image/jpeg,image/png,image/webp]',
                 'errors' => [
@@ -130,6 +137,7 @@ class Posts extends BaseController
                 'tag' => $this->request->getVar('tag'),
                 'categories' => $this->request->getVar('categories'),
                 'expired' => $this->request->getVar('expired'),
+                'harga' => $this->request->getVar('harga'),
                 'picture' => $randName,
             ];
             $model->insert($data);
@@ -152,6 +160,7 @@ class Posts extends BaseController
                 'tag' => $this->request->getVar('tag'),
                 'categories' => $this->request->getVar('categories'),
                 'expired' => $this->request->getVar('expired'),
+                'harga' => $this->request->getVar('harga'),
             ];
             $model->insert($data);
             
@@ -219,6 +228,12 @@ class Posts extends BaseController
                     'required' => '{field} Harus diisi',
                 ]
             ],
+            'harga' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus diisi',
+                ]
+            ],
             'picture' => [
                 'rules' => 'mime_in[picture,image/jpg,image/jpeg,image/png,image/webp]',
                 'errors' => [
@@ -242,6 +257,7 @@ class Posts extends BaseController
                 'meta' => $this->request->getVar('meta'),
                 'tag' => $this->request->getVar('tag'),
                 'categories' => $this->request->getVar('categories'),
+                'harga' => $this->request->getVar('harga'),
                 'picture' => $randName,
             ];
             $model->update($id,$data);
@@ -255,6 +271,7 @@ class Posts extends BaseController
                 'meta' => $this->request->getVar('meta'),
                 'tag' => $this->request->getVar('tag'),
                 'categories' => $this->request->getVar('categories'),
+                'harga' => $this->request->getVar('harga'),
             ];
             $model->update($id,$data);
             session()->setFlashData('success','Berhasil update post');
